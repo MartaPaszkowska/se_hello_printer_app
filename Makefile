@@ -1,3 +1,6 @@
+SERVICE_NAME=hello-world-printer
+MY_DOCKER_NAME=$(SERVICE_NAME)
+
 .PHONY: test
 
 deps:
@@ -14,10 +17,10 @@ run:
 	python main.py
 
 docker_build:
-	docker build -t hello-world-printer .
+	docker build -t $(MY_DOCKER_NAME) .
 
 docker_run: docker_build
 	docker run \
-		--name hello-world-printer-dev \
+		--name $(MY_DOCKER_NAME)-dev \
 		-p 5000:5000 \
-		-d hello-world-printer
+		-d $(MY_DOCKER_NAME)
